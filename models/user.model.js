@@ -26,17 +26,30 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    socialLinks: [{
-        platform: {
-            type: String,
-            enum: ['github', 'hackerrank', 'linkedin', 'twitter', 'medium'], // Predefined platforms
-            required: true
-        },
-        username: {
-            type: String,
-            required: true
-        },
-    }],
+    hackerrank: {
+        type: String,
+        default: null
+    },
+    leetcode: {
+        type: String,
+        default: null
+    },
+    gfg: {
+        type: String,
+        default: null
+    },
+    codeforces: {
+        type: String,
+        default: null
+    },
+    codechef: {
+        type: String,
+        default: null
+    },
+    code360: {
+        type: String,
+        default: null
+    }
 },
 {
     timestamps: true,

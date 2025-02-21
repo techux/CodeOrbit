@@ -1,5 +1,5 @@
 const User = require("../models/user.model");
-const RefreshToken = require("../models/refreshtoken.model");
+// const RefreshToken = require("../models/refreshtoken.model");
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -59,11 +59,11 @@ const loginController = async (req, res) => {
             }
         )
 
-        await RefreshToken.create({
-            token: refreshToken,
-            userId: user._id,
-            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days expiration
-        });
+        // await RefreshToken.create({
+        //     token: refreshToken,
+        //     userId: user._id,
+        //     expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days expiration
+        // });
 
 
         res.cookie('token', accessToken, {
