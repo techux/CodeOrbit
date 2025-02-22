@@ -3,7 +3,8 @@ const User = require("../models/user.model");
 const leetcode = require("../services/leetcode.service");
 const gfg = require("../services/gfg.service");
 const code360 = require("../services/code360.service");
-const codeforces = require("../services/codeforces.service")
+const codeforces = require("../services/codeforces.service");
+const codechef = require("../services/codechef.service");
 
 // leetcode question submission stats
 const lcQuestionController = async (req, res) => {
@@ -103,9 +104,44 @@ const codeforcesController = async (req, res) => {
     }
 }
 
+
+// codechef profile
+const codechefController = async (req, res) => {
+    try {
+        const username = (await User.findById(req.user.id).select("codechef")).codechef;        
+        if (!username){
+            return res.status(404).json({
+                status: "error",
+                message: "Please set the Codechef username first"
+            });
+        }
+        const data = await codechef.questionsCount(username);
+
+        if (!data) {
+            return res.status(404).json({
+                status: "error",
+                message: "User not found"
+            })
+        }
+
+        return res.status(200).json({
+            status: "ok",
+            data: data
+        })
+    } catch (error) {
+        console.error(`Error in codechefController : ${error.stack || error.message}`);
+        return res.status(500).json({
+            status:"error", 
+            message: "Internal Server Error" 
+        });
+    }
+}
+
+
 module.exports = {
     lcQuestionController,
     gfgSubmissionController,
     code360Controller,
-    codeforcesController
+    codeforcesController,
+    codechefController
 }
