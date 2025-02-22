@@ -7,6 +7,7 @@ const dbConnect = require("./utils/dbConnect");
 const {auth} = require("./middlewares/auth.middleware");
 const authRoute = require("./routes/auth.route");
 const accountRoute = require("./routes/account.route");
+const statsRoute = require("./routes/stats.route");
 
 const PORT = process.env.PORT || 9090 ;
 
@@ -27,6 +28,7 @@ app.get("/ping", (req, res) => {
 
 app.use("/auth", authRoute);
 app.use("/account", auth, accountRoute);
+app.use("/stats", auth, statsRoute);
 
 app.listen(PORT, ()=>{
     console.log(`[INFO] Server is running on port ${PORT}`)
