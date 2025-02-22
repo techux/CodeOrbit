@@ -4,11 +4,13 @@ const {
     updateProfileController, 
     deleteAccountController, 
     updatePlatformController, 
-    removePlatformController } = require("../controllers/account.controller");
+    removePlatformController,
+    getUsernameController } = require("../controllers/account.controller");
 
 const router = express.Router();
 
 router.get("/profile", myProfileController);
+router.get("/username", getUsernameController);
 router.patch("/update", updateProfileController);
 router.post("/platform", updatePlatformController);
 router.post("/platform/remove", removePlatformController);

@@ -148,10 +148,39 @@ const removePlatformController = async (req, res) => {
         });
     }
 }
+
+
+const getUsernameController = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        return res.status(200).json({
+            status: "ok",
+            data: [
+                {
+                    hackerrank: user.hackerrank,
+                    leetcode: user.leetcode,
+                    gfg: user.gfg,
+                    codeforces: user.codeforces,
+                    codechef: user.codechef,
+                    code360: user.code360
+                }
+            ]
+        })
+    } catch (error) {
+        console.error(`Error in getUsernameController: ${error.stack || error.message}`);
+        return res.status(500).json({
+            status:"error", 
+            message: "Internal Server Error" 
+        });
+    }
+}
+
+
 module.exports = {
     myProfileController,
     updateProfileController,
     deleteAccountController,
     updatePlatformController,
-    removePlatformController
+    removePlatformController,
+    getUsernameController
 }
