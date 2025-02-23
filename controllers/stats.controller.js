@@ -115,7 +115,7 @@ const codechefController = async (req, res) => {
                 message: "Please set the Codechef username first"
             });
         }
-        const data = await codechef.questionsCount(username);
+        const data = await codechef.profile(username);
 
         if (!data) {
             return res.status(404).json({

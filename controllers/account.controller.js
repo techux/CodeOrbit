@@ -155,8 +155,7 @@ const getUsernameController = async (req, res) => {
         const user = await User.findById(req.user.id);
         return res.status(200).json({
             status: "ok",
-            data: [
-                {
+            data: {
                     hackerrank: user.hackerrank,
                     leetcode: user.leetcode,
                     gfg: user.gfg,
@@ -164,7 +163,6 @@ const getUsernameController = async (req, res) => {
                     codechef: user.codechef,
                     code360: user.code360
                 }
-            ]
         })
     } catch (error) {
         console.error(`Error in getUsernameController: ${error.stack || error.message}`);
