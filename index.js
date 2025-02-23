@@ -19,11 +19,14 @@ app.use(cookieParser());
 app.use(cors());
 
 
-app.get("/ping", (req, res) => {
+app.get(["/", "/ping"], (req, res) => {
+    const startTime = Date.now();
     return res.status(200).json({
         status: "ok",
-        message: "pong"
-    })
+        message: "pong",
+        responseTime: `${Date.now() - startTime}ms`,
+        serverTime: new Date().toISOString()
+    });
 })
 
 app.use("/auth", authRoute);
