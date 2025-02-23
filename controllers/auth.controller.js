@@ -131,7 +131,8 @@ const registerController = async (req, res) => {
                 return res.status(400).json({
                     status: "error",
                     message: "Username already exists"
-            })
+                })
+            }
         }
 
         const hashedPassword = await bcrypt.hash(password, 10) ;
@@ -144,7 +145,8 @@ const registerController = async (req, res) => {
             userId: result._id
         })
         
-    } catch (error) {
+    }
+    catch (error) {
         console.error(`Error in registerController : ${error.stack || error.message}`);
         return res.status(500).json({
             status:"error", 
