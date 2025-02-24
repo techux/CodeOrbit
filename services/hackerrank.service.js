@@ -19,7 +19,7 @@ const badges = async (username) => {
 
 
 const skills = async (username) => {
-    const data = await fetch("https://www.hackerrank.com/rest/hackers/evasabeeh/skills", {
+    const data = await fetch(`https://www.hackerrank.com/rest/hackers/${username}/skills`, {
         "headers": { "content-type": "application/json" },
         "body": null,
         "method": "GET"
