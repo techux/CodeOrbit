@@ -115,13 +115,13 @@ const registerController = async (req, res) => {
         });
 
         if (existUser){
-            if (existUser.email) {
+            if (existUser.email == email ) {
                 return res.status(400).json({
                     status: "error",
                     message: "Email already exists"
                 })
             }
-            if (existUser.username) {
+            if (existUser.username == username) { 
                 return res.status(400).json({
                     status: "error",
                     message: "Username already exists"
